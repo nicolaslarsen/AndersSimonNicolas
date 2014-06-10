@@ -27,7 +27,7 @@ CREATE TABLE Children(
     lastName varchar(50),
     grade varchar(10),
     queueNumber INTEGER,
-    siblings char(1)
+    siblings char(1),
     PRIMARY KEY (cpr));
     
   
@@ -50,4 +50,3 @@ INSERT INTO Has Values('lelele@wup.dk',8077380773);
 INSERT INTO Has Values('nummerto@wup.dk',8077380773);
 INSERT INTO Has Values('123@hotmail.com',1812941738);
 commit;
-

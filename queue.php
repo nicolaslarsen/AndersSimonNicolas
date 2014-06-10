@@ -90,6 +90,7 @@ if ($_POST['childCPR'])
                         $cLastName = $cData[2];
                         $grade = $cData[3];
                         $queueNumber = $cData[4];
+                        $siblings = $cData[5];
                 // Execute the following html if a child is selected
                 ?>
                 <tr>
@@ -130,6 +131,25 @@ if ($_POST['childCPR'])
                                 {
                                     print $grade;
                                 }
+                            ?>
+                        </b>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Søskende:
+                    </td>
+                    <td>
+                        <b>
+                            <?php
+                            if ($siblings == 'y')
+                            {
+                                print 'Ja';
+                            }
+                            else
+                            {
+                                print 'Nej';
+                            }
                             ?>
                         </b>
                     </td>

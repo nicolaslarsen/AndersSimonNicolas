@@ -16,22 +16,6 @@ $userData = $dbh->prepare("SELECT * FROM users WHERE email='$username'");
 $userData->execute();
 $data = $userData->fetch(PDO::FETCH_NUM);
 $dbPass     = $data[1];
-$salt       = $data[6];
-
-if ($_SESSION['salt'])
-{
-    if ($salt = $_SESSION['salt'])
-    {
-        // Do nothing
-    }
-    else
-    {
-        die("Du er desværre blevet logget ud og "
-                . "har derfor ikke adgang til denne side, "
-                . "<a href='main.php'>log ind</a>");
-    }
-}
-
 
 if ($_POST['oldPassword'] && $_POST['newPassword'] && $_POST['newPassword_re'])
 {

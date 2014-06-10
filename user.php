@@ -17,20 +17,7 @@ $data = $userData->fetch(PDO::FETCH_NUM);
 $firstName  = $data[2];
 $lastName   = $data[3];
 $isAdmin    = $data[5];
-$salt       = $data[6];
-if ($_SESSION['salt'])
-{
-    if ($salt = $_SESSION['salt'])
-    {
-        // Do nothing
-    }
-    else
-    {
-        die("Du er desværre blevet logget ud og "
-                . "har derfor ikke adgang til denne side, "
-                . "<a href='main.php'>log ind</a>");
-    }
-}
+
 if ($_POST['logout'])
 {
     header("Location:logout.php");

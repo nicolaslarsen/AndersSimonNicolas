@@ -22,6 +22,21 @@ $userData->execute();
 $pData = $userData->fetch(PDO::FETCH_NUM);
 $pFirstName = $parentData[2];
 $pLastName  = $parentData[3];
+$salt       = $parentData[6];
+
+if ($_SESSION['salt'])
+{
+    if ($salt = $_SESSION['salt'])
+    {
+        // Do nothing
+    }
+    else
+    {
+        die("Du er desværre blevet logget ud og "
+                . "har derfor ikke adgang til denne side, "
+                . "<a href='main.php'>log ind</a>");
+    }
+}
 
 // If a child has been chosen, retrieve the data
 // for the child

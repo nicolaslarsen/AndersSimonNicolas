@@ -11,26 +11,44 @@ else
             . "<a href='main.php'>log ind</a> først");
 }
 
+// get the userdata
+$userData = $dbh->prepare("SELECT * FROM users WHERE email='$username'");
+$userData->execute();
+$data = $userData->fetch(PDO::FETCH_NUM);
+$dbPass     = $data[1];
+$salt       = $data[6];
+
+if ($_SESSION['salt'])
+{
+    if ($salt = $_SESSION['salt'])
+    {
+        // Do nothing
+    }
+    else
+    {
+        die("Du er desværre blevet logget ud og "
+                . "har derfor ikke adgang til denne side, "
+                . "<a href='main.php'>log ind</a>");
+    }
+}
+
+
 if ($_POST['oldPassword'] && $_POST['newPassword'] && $_POST['newPassword_re'])
 {
-    // get the userdata
-    $userData = $dbh->prepare("SELECT * FROM users WHERE email='$username'");
-    $userData->execute();
-    $data = $userData->fetch(PDO::FETCH_NUM);
-    
-    $oldPass = md5($_POST['oldPassword']);
-    $dbPass = $data[1];
-    $message = '';
+    $oldPass    = md5($_POST['oldPassword']);
+    $message    = '';
+
     if ($oldPass == $dbPass)
     {
-        $newPass = md5($_POST['newPassword']);
-        $newPassRe = md5($_POST['newPassword_re']);
+        $newPass    = md5($_POST['newPassword']);
+        $newPassRe  = md5($_POST['newPassword_re']);
         if ($newPass == $newPassRe)
         {
             $changePassword = $dbh->prepare("UPDATE users "
                     . "SET password='$newPass' WHERE email='$username'");
             $changePassword->execute();
-            die("Password changed succesfully, <a href='logout.php'>Log in</a>");
+            die("Passwordet blev skiftet, <a href='user.php'>"
+                    . "g&aring tilbage</a>");
         }
         else
         {

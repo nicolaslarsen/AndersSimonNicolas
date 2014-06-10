@@ -27,14 +27,15 @@ CREATE TABLE Children(
     lastName varchar(50),
     grade varchar(10),
     queueNumber INTEGER,
+    siblings char(1)
     PRIMARY KEY (cpr));
     
   
     
-INSERT INTO Children VALUES(1234567890,'Andersbarn','Ballingbarn', 'bhkl', 1);
-INSERT INTO Children VALUES(1812941738,'Nicolas','barn', 'bhkl', 2);
-INSERT INTO Children VALUES(4141311233,'Helt hundrede','bror','2.kl',1);
-INSERT INTO Children VALUES(8077380773,'To forældre','alligevel','2.kl',2);
+INSERT INTO Children VALUES(1234567890,'Andersbarn','Ballingbarn', 'bhkl', 1, 'y');
+INSERT INTO Children VALUES(1812941738,'Nicolas','barn', 'bhkl', 2, 'y');
+INSERT INTO Children VALUES(4141311233,'Helt hundrede','bror','2.kl',1, 'n');
+INSERT INTO Children VALUES(8077380773,'To forældre','alligevel','2.kl',2, 'n');
     
 CREATE TABLE Has(
     email varchar(60),
@@ -50,13 +51,3 @@ INSERT INTO Has Values('nummerto@wup.dk',8077380773);
 INSERT INTO Has Values('123@hotmail.com',1812941738);
 commit;
 
-SELECT DISTINCT Children.lastName FROM Users, Children, Has
-WHERE Children.cpr = 1234567890;
-
-SELECT * FROM USERS;
-
-SELECT DISTINCT Users.firstName, Users.lastName FROM USERS, HAS, CHILDREN
-WHERE Children.cpr = 8077380773;
-SELECT DISTINCT children.cpr, firstname, lastname 
-FROM has, children WHERE email='123@hotmail.com' 
-AND has.cpr = children.cpr

@@ -1,0 +1,199 @@
+[33mcommit e8e06d6ec674422e1eb3d1c66ca4abb23430b9ad[m
+Author: nicolaslarsen <nicolasringsmose@hotmail.com>
+Date:   Tue Jun 10 16:48:27 2014 +0200
+
+    Efter problemer med salt-verifikation er denne midlertidigt fjernet igen
+
+[33mcommit 5eb29bfb56dcbf96061dac6bf9b66666eecaf1a8[m
+Author: nicolaslarsen <nicolasringsmose@hotmail.com>
+Date:   Tue Jun 10 15:32:42 2014 +0200
+
+    Tilføjede salt-verifikation på queue.php, user.php changepass.php
+
+[33mcommit 62489ef5d82a8a776efd8035be6305db2b161210[m
+Author: nicolaslarsen <nicolasringsmose@hotmail.com>
+Date:   Tue Jun 10 15:04:49 2014 +0200
+
+    Tilføjede søskende til queue.php samt tilføjede application.php
+
+[33mcommit 5c3dab57e062cfa08dba817cd628de29a8ba08c8[m
+Author: nicolaslarsen <nicolasringsmose@hotmail.com>
+Date:   Tue Jun 10 14:53:22 2014 +0200
+
+    Rettede fejl på databasen, som skete ved sidste ændring
+
+[33mcommit 9016c14e526364d4f3315166c4af74d021b0d5ae[m
+Author: nicolaslarsen <nicolasringsmose@hotmail.com>
+Date:   Tue Jun 10 14:43:14 2014 +0200
+
+    Tilføjede søskende attribut til Children i databasen
+
+[33mcommit 6f103d64e0df2bb685af58e9ab7ddfceede69c2e[m
+Author: nicolaslarsen <nicolasringsmose@hotmail.com>
+Date:   Wed Jun 4 10:29:35 2014 +0200
+
+    Tilføjede recovery.php
+
+[33mcommit 7b79f244ec85bda7f280b8150ba8064b218d333c[m
+Author: nicolaslarsen <nicolasringsmose@hotmail.com>
+Date:   Wed Jun 4 10:13:03 2014 +0200
+
+    Tilføjede queue.php
+
+[33mcommit 0c18596468a0d2cd60fbb460681330a97e256969[m
+Author: nicolaslarsen <nicolasringsmose@hotmail.com>
+Date:   Wed Jun 4 10:12:37 2014 +0200
+
+    Tilføjede queue.php
+
+[33mcommit d1521415334f62888fe4999d351aee7ba32b77c0[m
+Author: nicolaslarsen <nicolasringsmose@hotmail.com>
+Date:   Wed Jun 4 10:12:06 2014 +0200
+
+    Tilføjede kønummer til Skoledatabase.sql
+
+[33mcommit d220dad894d715b7cea1e839c095ff4061644f74[m
+Author: nicolaslarsen <nicolasringsmose@hotmail.com>
+Date:   Wed Jun 4 10:11:37 2014 +0200
+
+    Tilføjede changepass.php
+
+[33mcommit 347707cab49243969712b2b8bfc57987bf31cb3b[m
+Author: nicolaslarsen <nicolasringsmose@hotmail.com>
+Date:   Wed Jun 4 10:11:10 2014 +0200
+
+    Tilføjede logout.php
+
+[33mcommit 0d04a9e0211cc271cb80cae7291008dec807f5a7[m
+Author: nicolaslarsen <nicolasringsmose@hotmail.com>
+Date:   Wed Jun 4 10:10:42 2014 +0200
+
+    Benyttede config.php i user.php og main.php - vil blive gjort for fremtidige
+
+[33mcommit da8238ce1905114967c6a92dbfed6fe56a552279[m
+Author: nicolaslarsen <nicolasringsmose@hotmail.com>
+Date:   Wed Jun 4 10:09:01 2014 +0200
+
+    config.php
+
+[33mcommit 155697e5e92a3546c605f33adbf1d9e60ddf19c9[m
+Author: nicolaslarsen <nicolasringsmose@hotmail.com>
+Date:   Wed Jun 4 10:08:21 2014 +0200
+
+    user.php
+
+[33mcommit f0a07b315d9fc228eff91ec73d2308a1ca6e9d9d[m
+Author: nicolaslarsen <nicolasringsmose@hotmail.com>
+Date:   Wed Jun 4 10:07:23 2014 +0200
+
+    Tilføjede bruger- og password-kontrol
+
+[33mcommit df1a71d4e48ab65e2196d1aeaa0d01d98249a08b[m
+Author: nicolaslarsen <nicolasringsmose@hotmail.com>
+Date:   Wed Jun 4 10:05:50 2014 +0200
+
+    Tilføjede login-skærm til main.php
+
+[33mcommit ab14a39115257a8a2600951ed38cbfb09a666617[m
+Author: nicolaslarsen <nicolasringsmose@hotmail.com>
+Date:   Wed Jun 4 10:04:08 2014 +0200
+
+    Tilføjede main.php
+
+[33mcommit fb5fea372925c8f82a89df95d11268253fae05e7[m
+Author: nicolaslarsen <nicolasringsmose@hotmail.com>
+Date:   Wed Jun 4 10:02:20 2014 +0200
+
+    Tilføjede skoledatabase.sql
+
+[33mcommit 384ebcd98b46fc55d508551bf9aad5dfd62065be[m
+Author: nicolaslarsen <nicolasringsmose@hotmail.com>
+Date:   Tue Jun 3 22:35:35 2014 +0200
+
+    HERFRA STARTER DEN
+
+[33mcommit 9bf65946f637e4119771d82bd3df7a20af59e982[m
+Author: nicolaslarsen <nicolasringsmose@hotmail.com>
+Date:   Tue Jun 3 22:28:54 2014 +0200
+
+    test
+
+[33mcommit 3272e2884437f3c201eb6ca1ded4d43a397f208b[m
+Merge: 7b4bae9 738abec
+Author: nicolaslarsen <nicolasringsmose@hotmail.com>
+Date:   Thu Feb 27 09:41:08 2014 +0100
+
+    Merge branch 'master' of https://github.com/nicolaslarsen/AndersSimonNicolas
+
+[33mcommit 7b4bae90acd6ef37a273b3d809024ad318bbff50[m
+Author: nicolaslarsen <nicolasringsmose@hotmail.com>
+Date:   Thu Feb 27 09:38:54 2014 +0100
+
+    lel
+
+[33mcommit 738abec88d8b1d023316ab893072332a5f646a0d[m
+Author: nicolaslarsen <nicolasringsmose@hotmail.com>
+Date:   Thu Feb 20 15:24:36 2014 +0100
+
+    Update opgaver.txt
+    
+    uhhh uden terminalen :3
+
+[33mcommit 9103e803706b4d2baf410f1b32f340161ebb008b[m
+Author: nicolaslarsen <nicolasringsmose@hotmail.com>
+Date:   Thu Feb 20 15:23:16 2014 +0100
+
+    skulle lige sætte det op derhjemme hihi
+
+[33mcommit ba7a0cd82296b71beb425130bcca77ad98eedc32[m
+Merge: 4656a3d 8399573
+Author: nicolaslarsen <nicolasringsmose@hotmail.com>
+Date:   Thu Feb 20 13:56:19 2014 +0100
+
+    lel i fixed dis
+
+[33mcommit 8399573876f5fe6b62a7038c26080287f63e770c[m
+Author: Tjerrild <simontjerrild@gmail.com>
+Date:   Thu Feb 20 13:53:48 2014 +0100
+
+    lollede rundt
+
+[33mcommit 4656a3dcbbea05966b2668f6310b3597fe1d1d55[m
+Author: nicolaslarsen <nicolasringsmose@hotmail.com>
+Date:   Thu Feb 20 13:53:28 2014 +0100
+
+    aendret til sissy, hihi
+
+[33mcommit a426150805c7faf085655aac3d5c52c70ca26fa2[m
+Author: Tjerrild <simontjerrild@gmail.com>
+Date:   Thu Feb 20 13:50:24 2014 +0100
+
+    added one line
+
+[33mcommit 3b6c99f0a84c7b85885d8896ca383bd40b06eb90[m
+Author: nicolaslarsen <nicolasringsmose@hotmail.com>
+Date:   Thu Feb 20 13:46:22 2014 +0100
+
+    hej
+
+[33mcommit 69c7365c7f4a677e2170fdb81934cfa9c8384fe8[m
+Author: nicolaslarsen <nicolasringsmose@hotmail.com>
+Date:   Thu Feb 20 13:35:23 2014 +0100
+
+    Update README.md
+    
+    den er pæn nu
+
+[33mcommit 6f55e769236c500ec8f67a7451ab237cf4e46ad7[m
+Author: Simon <simontjerrild@gmail.com>
+Date:   Thu Feb 20 13:34:44 2014 +0100
+
+    Create README.md
+
+[33mcommit f09583388f3a6f455018b906c2fa025c9b16561d[m
+Author: nicolaslarsen <nicolasringsmose@hotmail.com>
+Date:   Thu Feb 20 13:31:21 2014 +0100
+
+    Created shit
+    
+    lelele

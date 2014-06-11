@@ -33,6 +33,11 @@ if ($_POST['check'])
     header("Location:queue.php");
     die();
 }
+if ($_POST['queue'])
+{
+    header("Location:lists.php");
+    die();
+}
 ?>
 <html>
     <head>
@@ -40,6 +45,11 @@ if ($_POST['check'])
         <title>Bruger</title>
     </head>
     <body>
+        <?php
+        // Execute the following html
+        if ($isAdmin == 'n')
+        {
+?>
         Du er nu logget ind som: 
         <b>
             <?php print $firstName . " " . $lastName; ?>
@@ -47,22 +57,54 @@ if ($_POST['check'])
             </br>
         </b>
         <form name="menu" method="post">
-        <table width="300">
-            <tr>
-                <td>
-                    <input type="submit" name="check" value="Se plads på ventelisten">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="submit" name="changePass" value="Skift kode">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="submit" name="logout" value="Log out">
-                </td>
-            </tr>
-    </form>
+            <table width="300">
+                <tr>
+                    <td>
+                        <input type="submit" name="check" 
+                               value="Se plads på ventelisten">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="submit" name="changePass" value="Skift kode">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="submit" name="logout" value="Log out">
+                    </td>
+                </tr>
+        </form>
+        <?php 
+        }
+        // Execute the following html
+        else if ($isAdmin == 'y')
+        {
+        ?>
+        <h1>
+            Administrator
+        </h1>
+        <form name="menu" method="post">
+            <table width="300">
+                <tr>
+                    <td>
+                        <input type="submit" name="queue" value="Se ventelister">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="submit" name="changePass" value="Skift kode">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="submit" name="logout" value="Log out">
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <?php
+        }
+        ?>
     </body>
 </html>

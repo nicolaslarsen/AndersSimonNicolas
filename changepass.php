@@ -1,9 +1,10 @@
 <?php
 require("config.php");
 // Check if the user was logged in or redirect to the login page
-if ($_SESSION['username'])
+if ($_SESSION['username'] && $_SESSION['salt'])
 {
     $username = $_SESSION['username'];
+    $salt     = $_SESSION['salt'];
 }
 else
 {
@@ -16,6 +17,15 @@ $userData = $dbh->prepare("SELECT * FROM users WHERE email='$username'");
 $userData->execute();
 $data = $userData->fetch(PDO::FETCH_NUM);
 $dbPass     = $data[1];
+$dbSalt     = $data[6];
+
+// Check if the salt stored and the database matches the salt of the session.
+// If it doesn't, redirect the user to logout.php
+if ($salt != $dbSalt)
+{
+    die("Du er desv&aeligrre blevet logget ud, "
+            . "<a href='logout.php'>log ind</a> igen");
+}
 
 if ($_POST['oldPassword'] && $_POST['newPassword'] && $_POST['newPassword_re'])
 {

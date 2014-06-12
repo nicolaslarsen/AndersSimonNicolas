@@ -1,9 +1,10 @@
 <?php
 require("config.php");
 
-if ($_SESSION['username'])
+if ($_SESSION['username'] && $_SESSION['salt'])
 {
     $username = $_SESSION['username'];
+    $salt     = $_SESSION['salt'];
 }
 else
 {
@@ -19,10 +20,16 @@ if ($_POST['back'])
 
 $userData = $dbh->prepare("SELECT * FROM users WHERE email='$username'");
 $userData->execute();
-$pData = $userData->fetch(PDO::FETCH_NUM);
-$pFirstName = $parentData[2];
-$pLastName  = $parentData[3];
-$salt       = $parentData[6];
+$parentData = $userData->fetch(PDO::FETCH_NUM);
+$dbSalt     = $parentData[6];
+
+// Check if the salt stored and the database matches the salt of the session.
+// If it doesn't, redirect the user to logout.php
+if ($salt != $dbSalt)
+{
+    die("Du er desv&aeligrre blevet logget ud, "
+            . "<a href='logout.php'>log ind</a> igen");
+}
 
 // If a child has been chosen, retrieve the data
 // for the child

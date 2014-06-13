@@ -9,7 +9,7 @@ if ($_SESSION['username'] && $_SESSION['salt'])
 else
 {
     die("Du har ikke adgang til denne side "
-            . "<a href='main.php'>log ind</a> først");
+            . "<a href='logout.php'>log ind</a> f&oslashrst");
 }
 
 if ($_POST['back'])
@@ -36,7 +36,8 @@ if ($salt != $dbSalt)
 if ($_POST['childCPR'])
 {
     $cpr = $_POST['childCPR'];
-    // Shows the selected value
+    
+    // Fetch the data for the child picked
     $childData = $dbh->prepare("SELECT * FROM children WHERE cpr='$cpr'");
     $childData->execute();
     $cData = $userData->fetch(PDO::FETCH_NUM);

@@ -9,7 +9,7 @@ if ($_SESSION['username'] && $_SESSION['salt'])
 else
 {
     die("Du har ikke adgang til denne side "
-            . "<a href='main.php'>log ind</a> først");
+            . "<a href='logout.php'>log ind</a> f&oslashrst");
 }
 // get the userdata
 $userData = $dbh->prepare("SELECT * FROM users WHERE email='$username'");

@@ -9,7 +9,7 @@ if ($_SESSION['username'] && $_SESSION['salt'])
 else
 {
     die("Du har ikke adgang til denne side "
-            . "<a href='main.php'>log ind</a> først");
+            . "<a href='logout.php'>log ind</a> f&oslashrst");
 }
 
 // get the userdata
@@ -29,17 +29,21 @@ if ($salt != $dbSalt)
 
 if ($_POST['oldPassword'] && $_POST['newPassword'] && $_POST['newPassword_re'])
 {
-    $oldPass    = md5($_POST['oldPassword']);
+    $oldPass    = sha1($_POST['oldPassword']);
+    // The password to be compared to the one in the database
+    $checkPass  = md5($oldPass . sha1($dbSalt));
     $message    = '';
 
-    if ($oldPass == $dbPass)
+    if ($checkPass == $dbPass)
     {
-        $newPass    = md5($_POST['newPassword']);
-        $newPassRe  = md5($_POST['newPassword_re']);
+        $newPass    = sha1($_POST['newPassword']);
+        $newPassRe  = sha1($_POST['newPassword_re']);
         if ($newPass == $newPassRe)
         {
+            // The password to be inserted in the database
+            $insertPassword = md5($newPass . sha1($dbSalt));
             $changePassword = $dbh->prepare("UPDATE users "
-                    . "SET password='$newPass' WHERE email='$username'");
+                    . "SET password='$insertPassword' WHERE email='$username'");
             $changePassword->execute();
             die("Passwordet blev skiftet, <a href='user.php'>"
                     . "g&aring tilbage</a>");

@@ -78,7 +78,13 @@ if ($_POST['childCPR'])
                             {
                                 $cpr = $row[0];
                                 $cName = $row[1] . " " . $row[2];
-                                print "<option value='$cpr'>$cName</option>";
+                                $selected = '';
+                                if ($_POST['childCPR'] == $cpr)
+                                {
+                                    $selected = "selected='$cpr'";
+                                }
+                                print "<option value='$cpr'" . $selected . 
+                                        ">$cName</option>";
                             }
                             ?>
                         </select>

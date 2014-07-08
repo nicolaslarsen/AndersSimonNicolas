@@ -20,6 +20,12 @@ $lastName   = $data[3];
 $isAdmin    = $data[5];
 $dbSalt     = $data[6];
 
+// Get number of messages, if any
+
+$getMessages = $dbh->prepare("SELECT * FROM Messages");
+$getMessages->execute();
+$numberOfMessages = count($getMessages);
+
 // Check if the salt stored and the database matches the salt of the session.
 // If it doesn't, redirect the user to logout.php
 if ($salt != $dbSalt)
@@ -48,6 +54,11 @@ if ($_POST['queue'])
     header("Location:lists.php");
     die();
 }
+if ($_POST['createMessage'])
+{
+    header("Location:message.php");
+    die();
+}
 ?>
 <html>
     <head>
@@ -56,10 +67,10 @@ if ($_POST['queue'])
     </head>
     <body>
         <?php
-        // Execute the following html
+        // Execute the following html if user is not an admin
         if ($isAdmin == 'n')
         {
-?>
+        ?>
         Du er nu logget ind som: 
         <b>
             <?php print $firstName . " " . $lastName; ?>
@@ -67,7 +78,7 @@ if ($_POST['queue'])
             </br>
         </b>
         <form name="menu" method="post">
-            <table width="300">
+            <table style='float: left;' width="300">
                 <tr>
                     <td>
                         <input type="submit" name="check" 
@@ -84,10 +95,35 @@ if ($_POST['queue'])
                         <input type="submit" name="logout" value="Log out">
                     </td>
                 </tr>
+            </table>
+            <?php
+            // If there are messages to be shown
+            if ($numberOfMessages != 0)
+            {
+            ?>
+            <table width='300' style='float: center;' border='3'>
+                <th>
+                    Beskeder
+                </th>
+                <?php
+                foreach($dbh->query("SELECT * FROM Messages") as $row)
+                {
+                    echo
+                    "<tr>"
+                .       "<td align='center'>"
+                .           $row[0]
+                .       "</td>"
+                .   "</tr>";
+                }
+                ?>
+            </table>
+            <?php
+            }
+            ?>
         </form>
         <?php 
         }
-        // Execute the following html
+        // Execute the following html if user is admin
         else if ($isAdmin == 'y')
         {
         ?>
@@ -99,6 +135,11 @@ if ($_POST['queue'])
                 <tr>
                     <td>
                         <input type="submit" name="queue" value="Se ventelister">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="submit" name="createMessage" value="Skriv nyhed"
                     </td>
                 </tr>
                 <tr>

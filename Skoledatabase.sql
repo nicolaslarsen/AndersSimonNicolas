@@ -4,6 +4,8 @@ DROP TABLE Children;
 
 DROP TABLE Users;
 
+DROP TABLE Messages;
+
 CREATE TABLE Users(
     email varchar(60) NOT NULL,
     password varchar(60) NOT NULL,
@@ -49,4 +51,8 @@ INSERT INTO Has VALUES('Eriklarsen@lel.dk',1812941738);
 INSERT INTO Has Values('lelele@wup.dk',8077380773);
 INSERT INTO Has Values('nummerto@wup.dk',8077380773);
 INSERT INTO Has Values('123@hotmail.com',1812941738);
+
+CREATE TABLE Messages(
+    message TEXT);
+    
 commit;

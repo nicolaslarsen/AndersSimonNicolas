@@ -13,7 +13,7 @@ CREATE TABLE Users(
     lastName varchar(50),
     tel INTEGER, 
     isAdmin char(1),
-    salt CHAR(128) NOT NULL,
+    salt varchar(128) NOT NULL,
     PRIMARY KEY (email));
     
 INSERT INTO Users VALUES('123@hotmail.com','4e90b2bee1e1e1fcec26c62415ab43cb','Anders','Balling',13371337,'n', 123123132);

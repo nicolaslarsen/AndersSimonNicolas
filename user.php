@@ -56,7 +56,7 @@ if ($_POST['queue'])
 }
 if ($_POST['createMessage'])
 {
-    header("Location:message.php");
+    header("Location:messages.php");
     die();
 }
 ?>
@@ -106,12 +106,13 @@ if ($_POST['createMessage'])
                     Beskeder
                 </th>
                 <?php
+                // Create table for messages
                 foreach($dbh->query("SELECT * FROM Messages") as $row)
                 {
                     echo
                     "<tr>"
                 .       "<td align='center'>"
-                .           $row[0]
+                .           "<br>" . $row[0] . "<br><br>"
                 .       "</td>"
                 .   "</tr>";
                 }
@@ -131,7 +132,7 @@ if ($_POST['createMessage'])
             Administrator
         </h1>
         <form name="menu" method="post">
-            <table width="300">
+            <table width="300" style="float: left">
                 <tr>
                     <td>
                         <input type="submit" name="queue" value="Se ventelister">
@@ -139,7 +140,7 @@ if ($_POST['createMessage'])
                 </tr>
                 <tr>
                     <td>
-                        <input type="submit" name="createMessage" value="Skriv nyhed"
+                        <input type="submit" name="createMessage" value="Redigér nyheder"
                     </td>
                 </tr>
                 <tr>
@@ -157,5 +158,30 @@ if ($_POST['createMessage'])
         <?php
         }
         ?>
+        <?php
+            // If there are messages to be shown
+            if ($numberOfMessages != 0)
+            {
+            ?>
+            <table width='300' style='float: center;' border='3'>
+                <th>
+                    Beskeder
+                </th>
+                <?php
+                // Create table for messages
+                foreach($dbh->query("SELECT * FROM Messages") as $row)
+                {
+                    echo
+                    "<tr>"
+                .       "<td align='center'>"
+                .           "<br>" . $row[0] . "<br><br>"
+                .       "</td>"
+                .   "</tr>";
+                }
+                ?>
+            </table>
+            <?php
+            }
+            ?>
     </body>
 </html>

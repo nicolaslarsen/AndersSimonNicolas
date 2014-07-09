@@ -102,8 +102,8 @@ if ($_POST['oldPassword'] && $_POST['newPassword'] && $_POST['newPassword_re'])
                 </tr>
             </table>
             </br>
-            <button type="button" name="cancel" onclick=
-                "window.location='user.php'">Annullér</button>
+            <input type="button" name="cancel" onclick=
+                "window.location='user.php'" value='annullér'>
             <input type="submit" name="changePass" value="Skift kode">
         </form>
         <?php

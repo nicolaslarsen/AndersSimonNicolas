@@ -53,6 +53,12 @@ INSERT INTO Has Values('nummerto@wup.dk',8077380773);
 INSERT INTO Has Values('123@hotmail.com',1812941738);
 
 CREATE TABLE Messages(
-    message VARCHAR(4000));
+    message VARCHAR(4000),
+    id INTEGER,
+    PRIMARY KEY (id));
+    
+INSERT INTO Messages VALUES('det her er egentlig en test, og heri er der m&aringske flere linjer<br>man kan jo aldrig vide', 1);
     
 commit;
+
+SELECT * FROM Messages;

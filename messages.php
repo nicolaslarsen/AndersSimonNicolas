@@ -34,8 +34,38 @@ if ($isAdmin != 'y')
 }
 if ($_POST['newMessage'])
 {
-    $newMessage = nl2br($_POST['newMessage']);
-    print $newMessage;
+    // Get the highest ID from the messages table
+    $getMaxId = $dbh->prepare("SELECT MAX(id) FROM Messages");
+    $getMaxId->execute();
+    $collectId = $getMaxId->fetch(PDO::FETCH_NUM);
+    $maxId = $collectId[0];
+    $newId = $maxId + 1;
+    
+    // Insert the new message, the id = the highest id in the table + 1
+    $enteredMessage = nl2br($_POST['messageText']);
+    $fixMsg1        = str_replace('æ', '&aelig', $enteredMessage);
+    $fixMsg2        = str_replace('ø', '&oslash', $fixMsg1);
+    $fixMsg3        = str_replace('å', '&aring', $fixMsg2);
+    $fixMsg4        = str_replace('Æ', '&AElig', $fixMsg3);
+    $fixMsg5        = str_replace('Ø', '&Oslash', $fixMsg4); 
+    $newMessage     = str_replace('Å', '&Aring', $fixMsg5);
+
+    if ($newMessage != '')
+    {
+        $insertMessage = $dbh->prepare("INSERT INTO Messages VALUES('$newMessage', '$newId')");
+        $insertMessage->execute();
+    }
+}
+if ($_POST['delete'])
+{
+    $messages = $_POST['messages'];
+    $numberOfMessages = count($messages);
+    for ($i = 0; $i < $numberOfMessages; $i++)
+    {
+         $id = $messages[$i];
+         $deleteMessage = $dbh->prepare("DELETE FROM Messages WHERE id='$id'");
+         $deleteMessage->execute();
+    }
 }
 ?>
 <html>
@@ -45,15 +75,51 @@ if ($_POST['newMessage'])
     </head>
     <body>
         <h1>
-            Skriv ny nyhed
+            Skriv ny besked
         </h1>
         <form method='post'>
-            (max 4000 tegn)
+            <table style='float: left' width='350'>
+                <tr>
+                    <td>
+                        (max 400 tegn)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <textarea name="messageText" rows="10" 
+                                    cols ='30' maxlength='4000'></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type='button' onclick="window.location='messages.php'" value='Ryd tekst'> 
+                        <input type='submit' name='newMessage' value='Udsend nyhed'>
+                    </td>
+                </tr>
+            </table>
+            <table border='2' style='float: center' width='250'>
+                <th>
+                    Gamle beskeder
+                </th>
+                    <?php
+                    foreach($dbh->query("SELECT * FROM Messages "
+                            . "ORDER BY id DESC") as $row)
+                    {
+                        $text = $row[0];
+                        $id   = $row[1];
+                        echo
+                        "<tr>"
+                      .     "<td>"
+                      .         "<input type='checkbox' name='messages[]' "
+                      .             "value='$id'><br>$text</input>"
+                      .     "</td>"
+                      . "</tr>";
+                    }
+                    ?>
+            </table>
             <br>
-            <textarea name="newMessage" rows="10" cols ='40' maxlength='4000'></textarea>
-            <br>
-            <input type='button' onclick="window.location='messages.php'" value='annullér'>
-            <input type='submit' name='text' value='udsend nyhed'>
+            <input type='submit' name='delete' value='Slet valgte nyheder'>
         </form>
+        <br>
     </body>
 </html>

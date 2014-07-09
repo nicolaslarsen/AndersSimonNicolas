@@ -20,12 +20,6 @@ $lastName   = $data[3];
 $isAdmin    = $data[5];
 $dbSalt     = $data[6];
 
-// Get number of messages, if any
-
-$getMessages = $dbh->prepare("SELECT * FROM Messages");
-$getMessages->execute();
-$numberOfMessages = count($getMessages);
-
 // Check if the salt stored and the database matches the salt of the session.
 // If it doesn't, redirect the user to logout.php
 if ($salt != $dbSalt)
@@ -71,7 +65,7 @@ if ($_POST['createMessage'])
         if ($isAdmin == 'n')
         {
         ?>
-        Du er nu logget ind som: 
+        Du er nu logget ind som : 
         <b>
             <?php print $firstName . " " . $lastName; ?>
             </br>
@@ -96,31 +90,24 @@ if ($_POST['createMessage'])
                     </td>
                 </tr>
             </table>
-            <?php
-            // If there are messages to be shown
-            if ($numberOfMessages != 0)
-            {
-            ?>
-            <table width='300' style='float: center;' border='3'>
+            <table width="300" style='float: center;' border='3'>
                 <th>
                     Beskeder
                 </th>
                 <?php
                 // Create table for messages
-                foreach($dbh->query("SELECT * FROM Messages") as $row)
+                foreach($dbh->query("SELECT * FROM Messages "
+                        . "ORDER BY id DESC") as $row)
                 {
                     echo
                     "<tr>"
-                .       "<td align='center'>"
+                .       "<td>"
                 .           "<br>" . $row[0] . "<br><br>"
                 .       "</td>"
                 .   "</tr>";
                 }
                 ?>
             </table>
-            <?php
-            }
-            ?>
         </form>
         <?php 
         }
@@ -158,18 +145,14 @@ if ($_POST['createMessage'])
         <?php
         }
         ?>
-        <?php
-            // If there are messages to be shown
-            if ($numberOfMessages != 0)
-            {
-            ?>
             <table width='300' style='float: center;' border='3'>
                 <th>
                     Beskeder
                 </th>
                 <?php
                 // Create table for messages
-                foreach($dbh->query("SELECT * FROM Messages") as $row)
+                foreach($dbh->query("SELECT * FROM Messages "
+                        . "ORDER BY id DESC") as $row)
                 {
                     echo
                     "<tr>"
@@ -180,8 +163,5 @@ if ($_POST['createMessage'])
                 }
                 ?>
             </table>
-            <?php
-            }
-            ?>
     </body>
 </html>

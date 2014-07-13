@@ -78,7 +78,7 @@ if ($_POST['delete'])
             Skriv ny besked
         </h1>
         <form method='post'>
-            <table style='float: left' width='350'>
+            <table style='float: left' width='300'>
                 <tr>
                     <td>
                         (max 400 tegn)
@@ -93,11 +93,19 @@ if ($_POST['delete'])
                 <tr>
                     <td>
                         <input type='button' onclick="window.location='messages.php'" value='Ryd tekst'> 
-                        <input type='submit' name='newMessage' value='Udsend nyhed'>
+                        <input type='submit' name='newMessage' value='Udsend besked'>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <br>
+                        <input type="button" 
+                               onclick="window.location='user.php'" value="Tilbage">
                     </td>
                 </tr>
             </table>
-            <table border='2' style='float: center' width='250'>
+            <table border='2' style='float: center' width='310'>
+                <br>
                 <th>
                     Gamle beskeder
                 </th>
@@ -118,7 +126,8 @@ if ($_POST['delete'])
                     ?>
             </table>
             <br>
-            <input type='submit' name='delete' value='Slet valgte nyheder'>
+            <input type='submit' name='delete' value='Slet valgte beskeder' 
+                   onclick="return confirm('Er du sikker på at du vil slette de vagte beskeder?');">
         </form>
         <br>
     </body>

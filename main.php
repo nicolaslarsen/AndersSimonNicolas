@@ -5,7 +5,6 @@ if ($_SESSION['username'])
 {
     //header("Location:user.php");
 }
-
 if ($_POST['login'])
 {  
     if ($_POST['username'] && $_POST['password'])
@@ -27,29 +26,80 @@ if ($_POST['login'])
         // The salt stored in the database
         $dbSalt = $data[6];
         
+        // The latest login attempt
+        $dbFirst_login = $data[7];
+        
+        // The amount of login attempts
+        $dbLogin_attempts = $data[8];
+        
         // The password to check with the database password
         $checkPass = md5($password . sha1($dbSalt));
 
         // Number of users with the entered name
         $numberOfUsers = count($data[0]);
         
-        // If there is no users by the entered name
+        // The current time
+        $curTime = time(); 
+        
+        // The number of login attempts before lockout
+        $badNumber = 4;
+        
+        // Lockout time is 10 minutes, 60 seconds * 10 = 600 seconds
+        $lockoutTime = 600;
+
+        // If there are no users by the entered name
         if ($numberOfUsers == 0)
         {
             die("Undskyld. dette brugernavn findes ikke, "
                     . "<a href='main.php'>pr&oslashv igen</a>");
         }
+        // If the user is locked out
+        else if ($dbLogin_attempts >= $badNumber && 
+                $curTime - $dbFirst_login < $lockoutTime)
+        {
+            die("Du har indtastet en forkert kode 5 gange i tr&aeligk,<br>og er "
+                    . "desv&aeligrre lukket ude i 10 minutter fra dit f&oslashrste "
+                    . "fors&oslashg.<br>"
+                    . " <a href='logout.php'>Tilbage til forsiden</a>");
+        }
         // If the entered password doesn't match the password in the database
         else if ($dbPass != $checkPass)
-        {
+        {        
+            // If the lockout time is exceeded the login attempts reset
+            if ($curTime - $dbFirst_login > $lockoutTime)
+            {
+                $dbLogin_attempts = 0;
+            }
             
+            // If it is the first failed attempt
+            if ($dbLogin_attempts == 0)
+            {
+                // Enters the time of the login attempt in the database
+                $setTime = $dbh->prepare("UPDATE USERS SET first_login=$curTime "
+                    . "WHERE email='$username'");
+                $setTime->execute();
+            }
+            
+            // Updates the amount of login-attempts in the database
+            $dbLogin_attempts++;
+            $setAttempts = $dbh->prepare("UPDATE USERS SET login_attempts=$dbLogin_attempts"
+                    . " WHERE email='$username'");
+            $setAttempts->execute();
             die ("Det indtastede password var desv&aeligrre forkert, "
                     . "<a href='main.php'>pr&oslashv igen</a>"
                     . "</br></br><a href='recovery.php'>Har du glemt din kode?</a>");
-            print "</br>" . $checkPass . "</br>" .$dbPass;
         }
         else
         {
+            // Resets login-attempts
+            if ($dbLogin_attempts > 0)
+            {
+                $dbLogin_attempts = 0;
+                $setAttempts = $dbh->prepare("UPDATE USERS SET "
+                    . "login_attempts='$dbLogin_attempts' WHERE email='$username'");
+                $setAttempts->execute();
+            }
+            
             // Creates a new salt for the user on login
             $salt = md5(rand(). rand(). rand());
             $setSalt = $dbh->prepare("UPDATE users SET salt='$salt' "
@@ -87,7 +137,7 @@ if ($_POST['login'])
                     </B>
                 </td>
                 <td>
-                    <input name="username" type="text">
+                    <input name="username" type="text" placeholder="Email@eksempel.dk">
                 </td>
             </tr>
             <tr>
@@ -97,7 +147,7 @@ if ($_POST['login'])
                     </B>
                 </td>
                 <td>
-                    <input name="password" type="password">
+                    <input name="password" type="password" placeholder="Minkode123">
                 </td>
             </tr>
         </table>

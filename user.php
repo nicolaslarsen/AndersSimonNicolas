@@ -27,7 +27,6 @@ if ($salt != $dbSalt)
     die("Du er desv&aeligrre blevet logget ud, "
             . "<a href='logout.php'>log ind</a> igen");
 }
-
 if ($_POST['logout'])
 {
     header("Location:logout.php");
@@ -142,9 +141,6 @@ if ($_POST['createMessage'])
                 </tr>
             </table>
         </form>
-        <?php
-        }
-        ?>
             <table width='300' style='float: center;' border='3'>
                 <th>
                     Beskeder
@@ -156,12 +152,15 @@ if ($_POST['createMessage'])
                 {
                     echo
                     "<tr>"
-                .       "<td align='center'>"
+                .       "<td>"
                 .           "<br>" . $row[0] . "<br><br>"
                 .       "</td>"
                 .   "</tr>";
                 }
                 ?>
             </table>
+        <?php
+        }
+        ?>
     </body>
 </html>

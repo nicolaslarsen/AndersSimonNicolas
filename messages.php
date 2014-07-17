@@ -71,7 +71,7 @@ if ($_POST['delete'])
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-        <title>Nyheder</title>
+        <title>Beskeder</title>
     </head>
     <body>
         <h1>
@@ -81,7 +81,7 @@ if ($_POST['delete'])
             <table style='float: left' width='300'>
                 <tr>
                     <td>
-                        (max 400 tegn)
+                        (max 4000 tegn)
                     </td>
                 </tr>
                 <tr>

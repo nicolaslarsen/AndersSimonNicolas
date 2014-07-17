@@ -156,8 +156,8 @@ if ($_POST['send'])
                     ?>
                 </tr>
             </table><br>
-            <textarea rows="20" cols="50" name="message" 
-                        maxlength="4000"></textarea>
+            <textarea rows="15" cols="50" name="message" maxlength="4000"
+                      style="font-family: Arial;font-size: 12pt;"></textarea>
             <?php
             if (!$success)
             {

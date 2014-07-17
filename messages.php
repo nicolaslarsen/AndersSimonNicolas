@@ -78,7 +78,7 @@ if ($_POST['delete'])
             Skriv ny besked
         </h1>
         <form method='post'>
-            <table style='float: left' width='300'>
+            <table style='float: left' width='350'>
                 <tr>
                     <td>
                         (max 4000 tegn)
@@ -87,7 +87,8 @@ if ($_POST['delete'])
                 <tr>
                     <td>
                         <textarea name="messageText" rows="10" 
-                                    cols ='30' maxlength='4000'></textarea>
+                                  style="font-family: Arial;font-size: 12pt;"
+                                    cols ='38' maxlength='4000'></textarea>
                     </td>
                 </tr>
                 <tr>
@@ -104,7 +105,7 @@ if ($_POST['delete'])
                     </td>
                 </tr>
             </table>
-            <table border='2' style='float: center' width='310'>
+            <table border='2' style='float: center; font-family: Arial;font-size: 12pt;' width='310' cellpadding="3">
                 <br>
                 <th>
                     Gamle beskeder

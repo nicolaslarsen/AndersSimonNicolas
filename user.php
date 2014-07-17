@@ -89,7 +89,8 @@ if ($_POST['createMessage'])
                     </td>
                 </tr>
             </table>
-            <table width="300" style='float: center;' border='3'>
+            <table style='float: center; font-family: Arial;font-size: 12pt;'
+                   border='3' width='300' cellpadding="3">
                 <th>
                     Beskeder
                 </th>
@@ -136,12 +137,13 @@ if ($_POST['createMessage'])
                 </tr>
                 <tr>
                     <td>
-                        <input type="submit" name="logout" value="Log out">
+                        <input type="submit" name="logout" value="Log ud">
                     </td>
                 </tr>
             </table>
         </form>
-            <table width='300' style='float: center;' border='3'>
+            <table style='float: center; font-family: Arial;font-size: 12pt;' 
+                   border='3' width='300' cellpadding="3">
                 <th>
                     Beskeder
                 </th>
